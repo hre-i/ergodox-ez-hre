@@ -1,4 +1,8 @@
 #include QMK_KEYBOARD_H
+
+#undef DEBOUNCE
+#define DEBOUNCE    20
+
 #include "debug.h"
 #include "action_layer.h"
 #include "version.h"
