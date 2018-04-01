@@ -53,6 +53,9 @@ enum custom_keycodes {
 
 #define KNJ  ACTION_MODS_KEY(MOD_LALT, KC_GRAVE) // Alt+`
 
+#define T_COPY   ACTION_MODS_KEY(MOD_LSFT|MOD_LCTL, KC_C)  // Ctrl+Shift+C
+#define T_PASTE  ACTION_MODS_KEY(MOD_LSFT|MOD_LCTL, KC_P)  // Ctrl+Shift+P
+
 #define TO_RIGHT_WS  ACTION_MODS_KEY(MOD_LGUI|MOD_LCTL, KC_RIGHT) // Ctrl+Win+Right
 #define TO_LEFT_WS   ACTION_MODS_KEY(MOD_LGUI|MOD_LCTL, KC_LEFT)  // Ctrl+Win+Right
 
@@ -157,7 +160,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |---------+------+------+------+------+------|      |      |      |------+------+------+------+------+--------|
  * |         |      |      |      |      | ScLk |------|      |------| Left | Down |  Up  |Right |      |        |
  * |---------+------+------+------+------+------|      |      |      |------+------+------+------+------+--------|
- * |         |      |      |      |      |      |      |      |      | BS   | Del  | Home | End  |      |        |
+ * |         |      | COPY |PASTE |      |      |      |      |      | BS   | Del  | Home | End  |      |        |
  * `---------+------+------+------+------+-------------'      `-------------+------+------+------+------+--------'
  *   |       |      |      |      |      |                                  |      |      |      |      |RESET |
  *   `-----------------------------------'                                  `----------------------------------'
@@ -177,7 +180,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
             KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_PSCR,   KC_TRNS,
             KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_SLCK,
             KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,
-            KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,
+            KC_TRNS,   KC_TRNS,   T_COPY,    T_PASTE,   KC_TRNS,
                                                                    KC_TRNS,   KC_TRNS,
                                                                               KC_TRNS,
                                                         KC_TRNS,   KC_TRNS,   KC_TRNS,
