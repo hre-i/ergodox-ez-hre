@@ -76,7 +76,7 @@ enum custom_keycodes {
 #define WIN_UL ACTION_MODS_KEY(MOD_LGUI|MOD_LSFT|MOD_LCTL|MOD_LALT, KC_Q)  // Upper-Left
 #define WIN_DL ACTION_MODS_KEY(MOD_LGUI|MOD_LSFT|MOD_LCTL|MOD_LALT, KC_A)  // Lower-Left
 #define WIN_UR ACTION_MODS_KEY(MOD_LGUI|MOD_LSFT|MOD_LCTL|MOD_LALT, KC_W)  // Upper-Right
-#define WIN_DR ACTION_MODS_KEY(MOD_LGUI|MOD_LSFT|MOD_LCTL|MOD_LALT, KC_D)  // Lower-Right
+#define WIN_DR ACTION_MODS_KEY(MOD_LGUI|MOD_LSFT|MOD_LCTL|MOD_LALT, KC_S)  // Lower-Right
 
 #define APP_Q     ACTION_MODS_KEY(MOD_RGUI, KC_Q)     // RWIN+Q
 #define APP_W     ACTION_MODS_KEY(MOD_RGUI, KC_W)     // RWIN+W
@@ -121,7 +121,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-------------------------------------------.       ,------------------------------------------.
  * |  `    |  1  |  2  |  3  |  4  |  5  | INS |       |  6  |  7  |  8  |  9  |  0  |  -  |  =    |
  * |-------+-----+-----+-----+-----+-----------|       |-----+-----+-----+-----+-----+-----+-------|
- * |Alt/Tab|  Q  |  W  |  E  |  R  |  T  |WIN_L|       |WIN_R|  Y  |  U  |  I  |  O  |  P  |LAlt/\ |
+ * |Alt/Tab|  Q  |  W  |  E  |  R  |  T  |W_SL |       |W_MR |  Y  |  U  |  I  |  O  |  P  |LAlt/\ |
  * |-------+-----+-----+-----+-----+-----|     |       |     |-----+-----+-----+-----+-----+-------|
  * | LCtl  |  A  |  S  |  D  |  F  |  G  |-----|       |-----|  H  |  J  |  K  |  L  | ;:  |LCtl/' |
  * |-------+-----+-----+-----+-----+-----| DEL |       | BS  |-----+-----+-----+-----+-----+-------|
@@ -130,34 +130,34 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *  | WS_1 | WS_2| INS | L2  | LALT|                               |LALT | L2  |[   |  ]   | L3   |
  *  `------------------------------'                               `------------------------------'
  *                                 ,-------------.   ,-------------.
- *                                 | LWIN | W_SL |   | W_MR | RCTL |
+ *                                 | LWIN |WIN_UL|   |WIN_UR| RCTL |
  *                          ,------|------|------|   |------+------+------.
- *                          |      |      | W_ML |   | W_SR |      |      |
+ *                          |      |      |WIN_DL|   |WIN_DR|      |      |
  *                          | Ent  | ESC  |------|   |------| L1   | SPC  |
  *                          |      |      | RWIN |   | RWIN |      |      |
  *                          `--------------------'   `--------------------'
  *
  */
-    [BASE] = KEYMAP(  // layer 0 : default
+    [BASE] = LAYOUT_ergodox(  // layer 0 : default
             // left hand
             //--+----* ----+----* ----+----* ----+----* ----+----* ----+----* ----+----*
             KC_GRAVE,  KC_1,      KC_2,      KC_3,      KC_4,      KC_5,      KC_INS,
-            KC_TAB,    KC_Q,      KC_W,      KC_E,      KC_R,      KC_T,      WIN_L,
+            KC_TAB,    KC_Q,      KC_W,      KC_E,      KC_R,      KC_T,      W_SL,
             KC_LCTRL,  KC_A,      KC_S,      KC_D,      KC_F,      KC_G,
             KC_LSFT,   KC_Z,      KC_X,      KC_C,      KC_V,      KC_B,      KC_DELETE,
             WS_1,      WS_2,      KC_INS,    MO(WCTL),  KC_LALT,
-                       KC_LWIN,   W_SL,
-                                  W_ML,
+                       KC_LWIN,   WIN_UL,
+                                  WIN_DL,
             KC_ENT,   KC_ESC,     KC_RWIN,
             // right hand
             //--+----* ----+----* ----+----* ----+----* ----+----* ----+----* ----+----*
             KC_6,      KC_7,      KC_8,      KC_9,      KC_0,      KC_MINS,   KC_EQL,
-            WIN_R,     KC_Y,      KC_U,      KC_I,      KC_O,      KC_P,      LALT_T(KC_BSLS),
+            W_MR,      KC_Y,      KC_U,      KC_I,      KC_O,      KC_P,      LALT_T(KC_BSLS),
                        KC_H,      KC_J,      KC_K,      KC_L,      KC_SCLN,   LCTL_T(KC_QUOT),
             KC_BS,     KC_N,      KC_M,      KC_COMM,   KC_DOT,    KC_SLSH,   KC_RSFT,
                                   KC_LALT,   MO(WCTL),  KC_LBRC,   KC_RBRC,   MO(MDIA),
-            W_MR,      KC_RCTL,
-            W_SR,
+            WIN_UR,    KC_RCTL,
+            WIN_DR,
             KC_RWIN,   MO(SYMB),  KC_SPACE
         ),
 /* Keymap 1: Symbol Layer
@@ -182,7 +182,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                 `--------------------'   `--------------------'
  */
 // SYMBOLS
-    [SYMB] = KEYMAP(
+    [SYMB] = LAYOUT_ergodox(
             // left hand
             //--+----* ----+----* ----+----* ----+----* ----+----* ----+----* ----+----*
             KC_TRNS,   KC_F1,     KC_F2,     KC_F3,     KC_F4,     KC_F5,     KC_TRNS,
@@ -226,7 +226,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                          `--------------------'   `--------------------'
  *
  */
-    [WCTL] = KEYMAP(
+    [WCTL] = LAYOUT_ergodox(
             // left hand
             KC_TRNS,   WS_1,       WS_2,       WS_3,       WS_4,       WS_5,       KC_TRNS,
             KC_TRNS,   APP_Q,      APP_W,      APP_E,      APP_R,      APP_T,      WIN_D,
@@ -268,7 +268,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                 `--------------------'   `--------------------'
  */
 // Media/Mouse Control Layer
-    [MDIA] = KEYMAP(
+    [MDIA] = LAYOUT_ergodox(
             // left hand
             KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
             KC_TRNS, KC_TRNS, KC_TRNS, KC_MS_U, KC_TRNS, KC_TRNS, KC_TRNS,
