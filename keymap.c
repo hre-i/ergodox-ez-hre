@@ -121,20 +121,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-------------------------------------------.       ,------------------------------------------.
  * |  `    |  1  |  2  |  3  |  4  |  5  | INS |       |  6  |  7  |  8  |  9  |  0  |  -  |  =    |
  * |-------+-----+-----+-----+-----+-----------|       |-----+-----+-----+-----+-----+-----+-------|
- * |Alt/Tab|  Q  |  W  |  E  |  R  |  T  |W_SL |       |W_MR |  Y  |  U  |  I  |  O  |  P  |LAlt/\ |
+ * |Alt/Tab|  Q  |  W  |  E  |  R  |  T  |  [  |       |  ]  |  Y  |  U  |  I  |  O  |  P  |LAlt/\ |
  * |-------+-----+-----+-----+-----+-----|     |       |     |-----+-----+-----+-----+-----+-------|
  * | LCtl  |  A  |  S  |  D  |  F  |  G  |-----|       |-----|  H  |  J  |  K  |  L  | ;:  |LCtl/' |
  * |-------+-----+-----+-----+-----+-----| DEL |       | BS  |-----+-----+-----+-----+-----+-------|
  * | LSft  |  Z  |  X  |  C  |  V  |  B  |     |       |     |  N  |  M  |  ,  |  .  | /?  | RSft  |
  * `-------+-----+-----+-----+-----+-----------'       `-----------+-----+-----+-----+-----+-------'
- *  | WS_1 | WS_2| INS | L2  | LALT|                               |LALT | L2  |[   |  ]   | L3   |
+ *  | WS_L | WS_R| INS | L2  | LALT|                               |LALT | L2  | TO_L| RCtl| TO_R |
  *  `------------------------------'                               `------------------------------'
  *                                 ,-------------.   ,-------------.
- *                                 | LWIN |WIN_UL|   |WIN_UR| RCTL |
+ *                                 | W_SL |WIN_UL|   |WIN_UR| W_MR |
  *                          ,------|------|------|   |------+------+------.
  *                          |      |      |WIN_DL|   |WIN_DR|      |      |
  *                          | Ent  | ESC  |------|   |------| L1   | SPC  |
- *                          |      |      | RWIN |   | RWIN |      |      |
+ *                          |      |      | LWIN |   | RWIN |      |      |
  *                          `--------------------'   `--------------------'
  *
  */
@@ -142,21 +142,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
             // left hand
             //--+----* ----+----* ----+----* ----+----* ----+----* ----+----* ----+----*
             KC_GRAVE,  KC_1,      KC_2,      KC_3,      KC_4,      KC_5,      KC_INS,
-            KC_TAB,    KC_Q,      KC_W,      KC_E,      KC_R,      KC_T,      W_SL,
+            KC_TAB,    KC_Q,      KC_W,      KC_E,      KC_R,      KC_T,      KC_LBRC,
             KC_LCTRL,  KC_A,      KC_S,      KC_D,      KC_F,      KC_G,
             KC_LSFT,   KC_Z,      KC_X,      KC_C,      KC_V,      KC_B,      KC_DELETE,
-            WS_1,      WS_2,      KC_INS,    MO(WCTL),  KC_LALT,
-                       KC_LWIN,   WIN_UL,
+            WS_L,      WS_R,      KC_INS,    MO(WCTL),  KC_LALT,
+                       W_SL,      WIN_UL,
                                   WIN_DL,
-            KC_ENT,   KC_ESC,     KC_RWIN,
+            KC_ENT,   KC_ESC,     KC_LWIN,
             // right hand
             //--+----* ----+----* ----+----* ----+----* ----+----* ----+----* ----+----*
             KC_6,      KC_7,      KC_8,      KC_9,      KC_0,      KC_MINS,   KC_EQL,
-            W_MR,      KC_Y,      KC_U,      KC_I,      KC_O,      KC_P,      LALT_T(KC_BSLS),
+            KC_RBRC,   KC_Y,      KC_U,      KC_I,      KC_O,      KC_P,      LALT_T(KC_BSLS),
                        KC_H,      KC_J,      KC_K,      KC_L,      KC_SCLN,   LCTL_T(KC_QUOT),
             KC_BS,     KC_N,      KC_M,      KC_COMM,   KC_DOT,    KC_SLSH,   KC_RSFT,
-                                  KC_LALT,   MO(WCTL),  KC_LBRC,   KC_RBRC,   MO(MDIA),
-            WIN_UR,    KC_RCTL,
+                                  KC_LALT,   MO(WCTL),  TO_LEFT_WS, KC_RCTL,  TO_RIGHT_WS,
+            WIN_UR,    W_MR,
             WIN_DR,
             KC_RWIN,   MO(SYMB),  KC_SPACE
         ),
@@ -218,7 +218,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *  |      |     |     |     |     |                               |     |     |     |     |      |
  *  `------------------------------'                               `------------------------------'
  *                                 ,-------------.   ,-------------.
- *                                 |      |WIN_UL|   |WIN_UR|      |
+ *                                 |WIN_L |WIN_UL|   |WIN_UR|WIN_R |
  *                          ,------|------|------|   |------+------+------.
  *                          |      |      |WIN_DL|   |WIN_DR|      |      |
  *                          |      |      |------|   |------|      |      |
@@ -233,7 +233,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
             KC_TRNS,   APP_A,      APP_S,      APP_D,      APP_F,      APP_G,
             KC_TRNS,   APP_Z,      APP_X,      APP_C,      APP_V,      APP_B,      WIN_L,
             KC_TRNS,   KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,
-                                                                       KC_TRNS,    WIN_UL,
+                                                                       WIN_L,      WIN_UL,
                                                                                    WIN_DL,
                                                            KC_TRNS,    KC_TRNS,    KC_TRNS,
             // right hand
@@ -242,7 +242,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                        APP_H,      APP_J,      APP_K,      APP_L,      APP_SCLN,   KC_TRNS,
             WIN_R,     APP_N,      APP_M,      APP_COMM,   APP_DOT,    APP_SLSH,   KC_TRNS,
                                    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,
-            WIN_UR,    KC_TRNS,
+            WIN_UR,    WIN_R,
             WIN_DR,
             KC_TRNS,   KC_TRNS,    KC_TRNS
         ),
@@ -335,6 +335,20 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
+
+  case WS_L:
+    if (record->event.pressed) {
+      SEND_STRING(SS_TAP(X_RCTRL)SS_DOWN(X_LGUI)SS_DOWN(X_LCTRL)SS_TAP(X_LEFT)SS_UP(X_LCTRL)SS_UP(X_LGUI));
+    }
+    return false;
+    break;
+
+  case WS_R:
+    if (record->event.pressed) {
+      SEND_STRING(SS_TAP(X_RCTRL)SS_DOWN(X_LGUI)SS_DOWN(X_LCTRL)SS_TAP(X_RIGHT)SS_UP(X_LCTRL)SS_UP(X_LGUI));
+    }
+    return false;
+    break;
 
 #define DN_ALL SS_DOWN(X_LGUI)SS_DOWN(X_LALT)SS_DOWN(X_LCTRL)SS_DOWN(X_LSHIFT)
 #define UP_ALL SS_UP(X_LSHIFT)SS_UP(X_LCTRL)SS_UP(X_LALT)SS_UP(X_LGUI)
