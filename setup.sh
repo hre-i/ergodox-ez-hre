@@ -1,4 +1,4 @@
-#!/bbin/sh
+#!/bin/sh
 
 if   [ -x /usr/bin/apt ]; then
     sudo apt install -y avr-libc
