@@ -1,6 +1,3 @@
-//
-// NIHONNGO KEYBOARD
-//
 #include QMK_KEYBOARD_H
 
 //#undef DEBOUNCE
@@ -117,56 +114,48 @@ enum custom_keycodes {
 #define APP_DOT   ACTION_MODS_KEY(MOD_RGUI, KC_DOT)   // RWIN+.
 #define APP_SLSH  ACTION_MODS_KEY(MOD_RGUI, KC_SLSH)  // RWIN+/
 
-#define JA_CLON KC_QUOT  // : and +
-#define JA_AT   KC_LBRC  // @ and `
-#define JA_HAT  KC_EQL   // ^ and ~
-#define JA_ENUN KC_RO    // \ and _ (EN mark and UNder score)
-#define JA_ENVL KC_JYEN  // \ and | (EN mark and Vertical Line)
-#define JA_LBRC KC_RBRC  // [ and {
-#define JA_RBRC KC_BSLS  // ] and }
-
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 0: Basic layer
  *
  * ,-------------------------------------------.       ,------------------------------------------.
- * |  `    |  1  |  2  |  3  |  4  |  5  | ~^  |       | \|  |  6  |  7  |  8  |  9  |  0  |  -    |
+ * |  `    |  1  |  2  |  3  |  4  |  5  | INS |       |  =  |  6  |  7  |  8  |  9  |  0  |  -    |
  * |-------+-----+-----+-----+-----+-----------|       |-----+-----+-----+-----+-----+-----+-------|
- * |Alt/Tab|  Q  |  W  |  E  |  R  |  T  |  [  |       |  ]  |  Y  |  U  |  I  |  O  |  P  |LAlt/@ |
+ * |Alt/Tab|  Q  |  W  |  E  |  R  |  T  |  [  |       |  ]  |  Y  |  U  |  I  |  O  |  P  |LAlt/\ |
  * |-------+-----+-----+-----+-----+-----|     |       |     |-----+-----+-----+-----+-----+-------|
- * | LCtl  |  A  |  S  |  D  |  F  |  G  |-----|       |-----|  H  |  J  |  K  |  L  | ;+  |LCtl/:*|
+ * | LCtl  |  A  |  S  |  D  |  F  |  G  |-----|       |-----|  H  |  J  |  K  |  L  | ;:  |LCtl/' |
  * |-------+-----+-----+-----+-----+-----| DEL |       | BS  |-----+-----+-----+-----+-----+-------|
  * | LSft  |  Z  |  X  |  C  |  V  |  B  |     |       |     |  N  |  M  |  ,  |  .  | /?  | RSft  |
  * `-------+-----+-----+-----+-----+-----------'       `-----------+-----+-----+-----+-----+-------'
- *  | WS_L | WS_R| INS | L2  |EISU |                               |KANA | L2  | TO_L| RCtl| RCtl |
+ *  | WS_L | WS_R| INS | L2  | LALT|                               |LALT | L2  | TO_L| RCtl| TO_R |
  *  `------------------------------'                               `------------------------------'
  *                                 ,-------------.   ,-------------.
  *                                 | W_SL |WIN_UL|   |WIN_UR| W_MR |
  *                          ,------|------|------|   |------+------+------.
  *                          |      |      |WIN_DL|   |WIN_DR|      |      |
- *                          | Ent  | ESC  |------|   |------| L1   | SPC  |
- *                          |      |      | LWIN |   | RWIN |      |      |
+ *                          | Ent  | ESC/ |------|   |------| L1   | SPC  |
+ *                          |      | LAlt | LWIN |   | RWIN |      |      |
  *                          `--------------------'   `--------------------'
  *
  */
     [BASE] = LAYOUT_ergodox(  // layer 0 : default
             // left hand
             //--+----* ----+----* ----+----* ----+----* ----+----* ----+----* ----+----*
-            KC_GRAVE,  KC_1,      KC_2,      KC_3,      KC_4,      KC_5,      KC_EQL,
-            KC_TAB,    KC_Q,      KC_W,      KC_E,      KC_R,      KC_T,      JA_LBRC,
+            KC_GRAVE,  KC_1,      KC_2,      KC_3,      KC_4,      KC_5,      KC_INS,
+            KC_TAB,    KC_Q,      KC_W,      KC_E,      KC_R,      KC_T,      KC_LBRC,
             KC_LCTRL,  KC_A,      KC_S,      KC_D,      KC_F,      KC_G,
             KC_LSFT,   KC_Z,      KC_X,      KC_C,      KC_V,      KC_B,      KC_DELETE,
-            WS_L,      WS_R,      KC_INS,    MO(WCTL),  LALT_T(KC_MHEN),
-                       W_SL,      WIN_UL,
-                                  WIN_DL,
-            KC_ENT,    KC_ESC,    KC_LWIN,
+            WS_L,      WS_R,      KC_INS,    MO(WCTL),  KC_GRAVE,
+                       W_SL,           WIN_UL,
+                                       WIN_DL,
+            KC_ENT,    LALT_T(KC_ESC), KC_LWIN,
             // right hand
             //--+----* ----+----* ----+----* ----+----* ----+----* ----+----* ----+----*
-            KC_JYEN,   KC_6,      KC_7,      KC_8,      KC_9,      KC_0,      KC_MINS,
-            JA_RBRC,   KC_Y,      KC_U,      KC_I,      KC_O,      KC_P,      LALT_T(JA_AT),
+            KC_EQL,    KC_6,      KC_7,      KC_8,      KC_9,      KC_0,      KC_MINS,
+            KC_RBRC,   KC_Y,      KC_U,      KC_I,      KC_O,      KC_P,      LALT_T(KC_BSLS),
                        KC_H,      KC_J,      KC_K,      KC_L,      KC_SCLN,   LCTL_T(KC_QUOT),
             KC_BS,     KC_N,      KC_M,      KC_COMM,   KC_DOT,    KC_SLSH,   KC_RSFT,
-                          RALT_T(KC_HENK),  MO(WCTL),  KC_LWIN,   KC_RO,  KC_RCTL,
+                                  KC_EQL,   MO(WCTL),  TO_LEFT_WS, KC_RCTL,  TO_RIGHT_WS,
             WIN_UR,    W_MR,
             WIN_DR,
             KC_RWIN,   MO(SYMB),  KC_SPACE
