@@ -42,8 +42,6 @@ enum custom_keycodes {
 #define MOD_CSW   MT((MOD_LCTL|MOD_LSFT|MOD_LGUI), KC_NO)
 #define MOD_ACSW  MT((MOD_LALT|MOD_LCTL|MOD_LSFT|MOD_LGUI), KC_NO)
 
-#define SF_LBRC  ACTION_MODS_KEY(MOD_LSFT, KC_LBRC)     // { (Shift + [)
-#define SF_RBRC  ACTION_MODS_KEY(MOD_LSFT, KC_RBRC)     // } (Shift + ])
 
 #define M_PASTE ACTION_MODS_KEY(MOD_LSFT, KC_INS)  // Mintty Paste(Shift+Ins)
 #define M_COPY  ACTION_MODS_KEY(MOD_LCTL, KC_INS)  // Mintty Copy (Ctrl+Ins)
@@ -125,20 +123,22 @@ enum custom_keycodes {
 #define JA_LBRC KC_RBRC  // [ and {
 #define JA_RBRC KC_BSLS  // ] and }
 
+#define SF_LBRC  ACTION_MODS_KEY(MOD_LSFT, JA_LBRC)     // { (Shift + [)
+#define SF_RBRC  ACTION_MODS_KEY(MOD_LSFT, JA_RBRC)     // } (Shift + ])
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 0: Basic layer
  *
  * ,-------------------------------------------.       ,------------------------------------------.
- * |  `    |  1  |  2  |  3  |  4  |  5  | ~^  |       | \|  |  6  |  7  |  8  |  9  |  0  |  -    |
+ * |  INS  |  1  |  2  |  3  |  4  |  5  | DEL |       | BS  |  6  |  7  |  8  |  9  |  0  |  -    |
  * |-------+-----+-----+-----+-----+-----------|       |-----+-----+-----+-----+-----+-----+-------|
  * |Alt/Tab|  Q  |  W  |  E  |  R  |  T  |  [  |       |  ]  |  Y  |  U  |  I  |  O  |  P  |LAlt/@ |
  * |-------+-----+-----+-----+-----+-----|     |       |     |-----+-----+-----+-----+-----+-------|
  * | LCtl  |  A  |  S  |  D  |  F  |  G  |-----|       |-----|  H  |  J  |  K  |  L  | ;+  |LCtl/:*|
- * |-------+-----+-----+-----+-----+-----| DEL |       | BS  |-----+-----+-----+-----+-----+-------|
+ * |-------+-----+-----+-----+-----+-----| ^~  |       | \|  |-----+-----+-----+-----+-----+-------|
  * | LSft  |  Z  |  X  |  C  |  V  |  B  |     |       |     |  N  |  M  |  ,  |  .  | /?  | RSft  |
  * `-------+-----+-----+-----+-----+-----------'       `-----------+-----+-----+-----+-----+-------'
- *  | WS_L | WS_R| INS | L2  |EISU |                               |KANA | L2  | TO_L| RCtl| RCtl |
+ *  | WS_L | WS_R| INS | L2  |EISU |                               |KANA | L2  | TO_L| RAlt| RCtl |
  *  `------------------------------'                               `------------------------------'
  *                                 ,-------------.   ,-------------.
  *                                 | W_SL |WIN_UL|   |WIN_UR| W_MR |
@@ -152,21 +152,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT_ergodox(  // layer 0 : default
             // left hand
             //--+----* ----+----* ----+----* ----+----* ----+----* ----+----* ----+----*
-            KC_GRAVE,  KC_1,      KC_2,      KC_3,      KC_4,      KC_5,      KC_EQL,
+            KC_INS,    KC_1,      KC_2,      KC_3,      KC_4,      KC_5,      KC_DELETE,
             KC_TAB,    KC_Q,      KC_W,      KC_E,      KC_R,      KC_T,      JA_LBRC,
             KC_LCTRL,  KC_A,      KC_S,      KC_D,      KC_F,      KC_G,
-            KC_LSFT,   KC_Z,      KC_X,      KC_C,      KC_V,      KC_B,      KC_DELETE,
+            KC_LSFT,   KC_Z,      KC_X,      KC_C,      KC_V,      KC_B,      JA_HAT,
             WS_L,      WS_R,      KC_INS,    MO(WCTL),  LALT_T(KC_MHEN),
                        W_SL,      WIN_UL,
                                   WIN_DL,
             KC_ENT,    KC_ESC,    KC_LWIN,
             // right hand
             //--+----* ----+----* ----+----* ----+----* ----+----* ----+----* ----+----*
-            KC_JYEN,   KC_6,      KC_7,      KC_8,      KC_9,      KC_0,      KC_MINS,
+            KC_BS,     KC_6,      KC_7,      KC_8,      KC_9,      KC_0,      KC_MINS,
             JA_RBRC,   KC_Y,      KC_U,      KC_I,      KC_O,      KC_P,      LALT_T(JA_AT),
                        KC_H,      KC_J,      KC_K,      KC_L,      KC_SCLN,   LCTL_T(KC_QUOT),
-            KC_BS,     KC_N,      KC_M,      KC_COMM,   KC_DOT,    KC_SLSH,   KC_RSFT,
-                          RALT_T(KC_HENK),  MO(WCTL),  KC_LWIN,   KC_RO,  KC_RCTL,
+            KC_JYEN,     KC_N,      KC_M,      KC_COMM,   KC_DOT,    KC_SLSH,   KC_RSFT,
+                          RALT_T(KC_HENK),   MO(WCTL),  KC_LWIN,   KC_RALT,   KC_RCTL,
             WIN_UR,    W_MR,
             WIN_DR,
             KC_RWIN,   MO(SYMB),  KC_SPACE
@@ -198,7 +198,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
             //--+----* ----+----* ----+----* ----+----* ----+----* ----+----* ----+----*
             KC_TRNS,   KC_F1,     KC_F2,     KC_F3,     KC_F4,     KC_F5,     KC_TRNS,
             KC_TRNS,   KC_TRNS,   KC_TRNS,   SF_LBRC,   SF_RBRC,   KC_PSCR,   KC_TRNS,
-            KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_LBRC,   KC_RBRC,   KC_SLCK,
+            KC_TRNS,   KC_TRNS,   KC_TRNS,   JA_LBRC,   JA_RBRC,   KC_SLCK,
             KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,
             KC_TRNS,   KC_TRNS,   T_COPY,    T_PASTE,   KC_TRNS,
                                                                    KC_TRNS,   KC_TRNS,
