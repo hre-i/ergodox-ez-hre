@@ -79,6 +79,8 @@ enum custom_keycodes {
 #define WIN_UR ACTION_MODS_KEY(MOD_LGUI|MOD_LSFT|MOD_LCTL|MOD_LALT, KC_W)  // Upper-Right
 #define WIN_DR ACTION_MODS_KEY(MOD_LGUI|MOD_LSFT|MOD_LCTL|MOD_LALT, KC_S)  // Lower-Right
 
+#define WIN_C ACTION_MODS_KEY(MOD_LGUI|MOD_LSFT|MOD_LCTL|MOD_LALT, KC_SPACE)  // Lower-Right
+
 #define APP_Q     ACTION_MODS_KEY(MOD_RGUI, KC_Q)     // RWIN+Q
 #define APP_W     ACTION_MODS_KEY(MOD_RGUI, KC_W)     // RWIN+W
 #define APP_E     ACTION_MODS_KEY(MOD_RGUI, KC_E)     // RWIN+E
@@ -138,7 +140,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |-------+-----+-----+-----+-----+-----| ^~  |       | \|  |-----+-----+-----+-----+-----+-------|
  * | LSft  |  Z  |  X  |  C  |  V  |  B  |     |       |     |  N  |  M  |  ,  |  .  | /?  | RSft  |
  * `-------+-----+-----+-----+-----+-----------'       `-----------+-----+-----+-----+-----+-------'
- *  | WS_L | WS_R| INS | L2  |EISU |                               |KANA | L2  | TO_L| RAlt| RCtl |
+ *  | WS_L | WS_R| INS | L2  |EISU |                               |KANA | L2  |LWIN | RAlt| RCtl |
  *  `------------------------------'                               `------------------------------'
  *                                 ,-------------.   ,-------------.
  *                                 | W_SL |WIN_UL|   |WIN_UR| W_MR |
@@ -165,7 +167,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
             KC_BS,     KC_6,      KC_7,      KC_8,      KC_9,      KC_0,      KC_MINS,
             JA_RBRC,   KC_Y,      KC_U,      KC_I,      KC_O,      KC_P,      LALT_T(JA_AT),
                        KC_H,      KC_J,      KC_K,      KC_L,      KC_SCLN,   LCTL_T(KC_QUOT),
-            KC_JYEN,     KC_N,      KC_M,      KC_COMM,   KC_DOT,    KC_SLSH,   KC_RSFT,
+            KC_JYEN,   KC_N,      KC_M,      KC_COMM,   KC_DOT,    KC_SLSH,   KC_RSFT,
                           RALT_T(KC_HENK),   MO(WCTL),  KC_LWIN,   KC_RALT,   KC_RCTL,
             WIN_UR,    W_MR,
             WIN_DR,
@@ -248,14 +250,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                                    WIN_DL,
                                                            KC_TRNS,    KC_TRNS,    KC_TRNS,
             // right hand
-            WS_6,      WS_7,       WS_8,       WS_9,       WS_0,       KC_TRNS,    KC_TRNS,
+            KC_TRNS,   WS_6,       WS_7,       WS_8,       WS_9,       WS_0,       KC_TRNS,
             WIN_U,     APP_Y,      APP_U,      APP_I,      APP_O,      APP_P,      KC_TRNS,
                        APP_H,      APP_J,      APP_K,      APP_L,      APP_SCLN,   KC_TRNS,
             WIN_R,     APP_N,      APP_M,      APP_COMM,   APP_DOT,    APP_SLSH,   KC_TRNS,
                                    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,
             WIN_UR,    WIN_R,
             WIN_DR,
-            KC_TRNS,   KC_TRNS,    KC_TRNS
+            KC_TRNS,   KC_TRNS,    WIN_C
         ),
 /* Keymap 3: Mouse Control Layer
  *
