@@ -1,6 +1,3 @@
-//
-// NIHONNGO KEYBOARD
-//
 #include QMK_KEYBOARD_H
 
 //#undef DEBOUNCE
@@ -42,6 +39,8 @@ enum custom_keycodes {
 #define MOD_CSW   MT((MOD_LCTL|MOD_LSFT|MOD_LGUI), KC_NO)
 #define MOD_ACSW  MT((MOD_LALT|MOD_LCTL|MOD_LSFT|MOD_LGUI), KC_NO)
 
+#define SF_LBRC  ACTION_MODS_KEY(MOD_LSFT, KC_LBRC)     // { (Shift + [)
+#define SF_RBRC  ACTION_MODS_KEY(MOD_LSFT, KC_RBRC)     // } (Shift + ])
 
 #define M_PASTE ACTION_MODS_KEY(MOD_LSFT, KC_INS)  // Mintty Paste(Shift+Ins)
 #define M_COPY  ACTION_MODS_KEY(MOD_LCTL, KC_INS)  // Mintty Copy (Ctrl+Ins)
@@ -58,28 +57,26 @@ enum custom_keycodes {
 
 #define KNJ  ACTION_MODS_KEY(MOD_LALT, KC_GRAVE) // Alt+`
 
-#define T_COPY   ACTION_MODS_KEY(MOD_LSFT|MOD_LCTL, KC_C)  // Ctrl+Shift+C
-#define T_PASTE  ACTION_MODS_KEY(MOD_LSFT|MOD_LCTL, KC_P)  // Ctrl+Shift+P
+#define T_COPY   ACTION_MODS_KEY(MOD_LCTL, KC_INS)  // Ctrl+INS
+#define T_PASTE  ACTION_MODS_KEY(MOD_LSFT, KC_INS)  // Shift+INS
 
 #define TO_RIGHT_WS  ACTION_MODS_KEY(MOD_LGUI|MOD_LCTL, KC_RIGHT) // Ctrl+Win+Right
 #define TO_LEFT_WS   ACTION_MODS_KEY(MOD_LGUI|MOD_LCTL, KC_LEFT)  // Ctrl+Win+Right
 
-#define W_ML ACTION_MODS_KEY(MOD_LGUI|MOD_LSFT|MOD_LCTL|MOD_LALT, KC_Y) // Main Left
-#define W_SR ACTION_MODS_KEY(MOD_LGUI|MOD_LSFT|MOD_LCTL|MOD_LALT, KC_U) // Sub Right
-#define W_SL ACTION_MODS_KEY(MOD_LGUI|MOD_LSFT|MOD_LCTL|MOD_LALT, KC_I) // Sub Left
-#define W_MR ACTION_MODS_KEY(MOD_LGUI|MOD_LSFT|MOD_LCTL|MOD_LALT, KC_O) // Main Right
+#define W_ML ACTION_MODS_KEY(MOD_LGUI|MOD_LSFT|MOD_LCTL, KC_Y) // Main Left
+#define W_SR ACTION_MODS_KEY(MOD_LGUI|MOD_LSFT|MOD_LCTL, KC_U) // Sub Right
+#define W_SL ACTION_MODS_KEY(MOD_LGUI|MOD_LSFT|MOD_LCTL, KC_I) // Sub Left
+#define W_MR ACTION_MODS_KEY(MOD_LGUI|MOD_LSFT|MOD_LCTL, KC_O) // Main Right
 
-#define WIN_L ACTION_MODS_KEY(MOD_LGUI|MOD_LSFT|MOD_LCTL|MOD_LALT, KC_H) // Left Half
-#define WIN_D ACTION_MODS_KEY(MOD_LGUI|MOD_LSFT|MOD_LCTL|MOD_LALT, KC_J) // Lower Half
-#define WIN_U ACTION_MODS_KEY(MOD_LGUI|MOD_LSFT|MOD_LCTL|MOD_LALT, KC_K) // Upper Half
-#define WIN_R ACTION_MODS_KEY(MOD_LGUI|MOD_LSFT|MOD_LCTL|MOD_LALT, KC_L) // Right Half
+#define WIN_L ACTION_MODS_KEY(MOD_LGUI|MOD_LSFT|MOD_LCTL, KC_H) // Left Half
+#define WIN_D ACTION_MODS_KEY(MOD_LGUI|MOD_LSFT|MOD_LCTL, KC_J) // Lower Half
+#define WIN_U ACTION_MODS_KEY(MOD_LGUI|MOD_LSFT|MOD_LCTL, KC_K) // Upper Half
+#define WIN_R ACTION_MODS_KEY(MOD_LGUI|MOD_LSFT|MOD_LCTL, KC_L) // Right Half
 
-#define WIN_UL ACTION_MODS_KEY(MOD_LGUI|MOD_LSFT|MOD_LCTL|MOD_LALT, KC_Q)  // Upper-Left
-#define WIN_DL ACTION_MODS_KEY(MOD_LGUI|MOD_LSFT|MOD_LCTL|MOD_LALT, KC_A)  // Lower-Left
-#define WIN_UR ACTION_MODS_KEY(MOD_LGUI|MOD_LSFT|MOD_LCTL|MOD_LALT, KC_W)  // Upper-Right
-#define WIN_DR ACTION_MODS_KEY(MOD_LGUI|MOD_LSFT|MOD_LCTL|MOD_LALT, KC_S)  // Lower-Right
-
-#define WIN_C ACTION_MODS_KEY(MOD_LGUI|MOD_LSFT|MOD_LCTL|MOD_LALT, KC_SPACE)  // Lower-Right
+#define WIN_UL ACTION_MODS_KEY(MOD_LGUI|MOD_LSFT|MOD_LCTL, KC_Q)  // Upper-Left
+#define WIN_DL ACTION_MODS_KEY(MOD_LGUI|MOD_LSFT|MOD_LCTL, KC_A)  // Lower-Left
+#define WIN_UR ACTION_MODS_KEY(MOD_LGUI|MOD_LSFT|MOD_LCTL, KC_W)  // Upper-Right
+#define WIN_DR ACTION_MODS_KEY(MOD_LGUI|MOD_LSFT|MOD_LCTL, KC_S)  // Lower-Right
 
 #define APP_Q     ACTION_MODS_KEY(MOD_RGUI, KC_Q)     // RWIN+Q
 #define APP_W     ACTION_MODS_KEY(MOD_RGUI, KC_W)     // RWIN+W
@@ -117,30 +114,20 @@ enum custom_keycodes {
 #define APP_DOT   ACTION_MODS_KEY(MOD_RGUI, KC_DOT)   // RWIN+.
 #define APP_SLSH  ACTION_MODS_KEY(MOD_RGUI, KC_SLSH)  // RWIN+/
 
-#define JA_CLON KC_QUOT  // : and +
-#define JA_AT   KC_LBRC  // @ and `
-#define JA_HAT  KC_EQL   // ^ and ~
-#define JA_ENUN KC_RO    // \ and _ (EN mark and UNder score)
-#define JA_ENVL KC_JYEN  // \ and | (EN mark and Vertical Line)
-#define JA_LBRC KC_RBRC  // [ and {
-#define JA_RBRC KC_BSLS  // ] and }
-
-#define SF_LBRC  ACTION_MODS_KEY(MOD_LSFT, JA_LBRC)     // { (Shift + [)
-#define SF_RBRC  ACTION_MODS_KEY(MOD_LSFT, JA_RBRC)     // } (Shift + ])
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 0: Basic layer
  *
  * ,-------------------------------------------.       ,------------------------------------------.
- * |  INS  |  1  |  2  |  3  |  4  |  5  | DEL |       | BS  |  6  |  7  |  8  |  9  |  0  |  -    |
+ * | INS   |  1  |  2  |  3  |  4  |  5  | DEL |       | BS  |  6  |  7  |  8  |  9  |  0  |  -    |
  * |-------+-----+-----+-----+-----+-----------|       |-----+-----+-----+-----+-----+-----+-------|
- * |Alt/Tab|  Q  |  W  |  E  |  R  |  T  |  [  |       |  ]  |  Y  |  U  |  I  |  O  |  P  |LAlt/@ |
+ * |Alt/Tab|  Q  |  W  |  E  |  R  |  T  |  [  |       |  ]  |  Y  |  U  |  I  |  O  |  P  |LAlt/\ |
  * |-------+-----+-----+-----+-----+-----|     |       |     |-----+-----+-----+-----+-----+-------|
- * | LCtl  |  A  |  S  |  D  |  F  |  G  |-----|       |-----|  H  |  J  |  K  |  L  | ;+  |LCtl/:*|
- * |-------+-----+-----+-----+-----+-----| ^~  |       | \|  |-----+-----+-----+-----+-----+-------|
+ * | LCtl  |  A  |  S  |  D  |  F  |  G  |-----|       |-----|  H  |  J  |  K  |  L  | ;:  |LCtl/' |
+ * |-------+-----+-----+-----+-----+-----|  `  |       | =/+ |-----+-----+-----+-----+-----+-------|
  * | LSft  |  Z  |  X  |  C  |  V  |  B  |     |       |     |  N  |  M  |  ,  |  .  | /?  | RSft  |
  * `-------+-----+-----+-----+-----+-----------'       `-----------+-----+-----+-----+-----+-------'
- *  | WS_L | WS_R| INS | L2  |EISU |                               |KANA | L2  |LWIN | RAlt| RCtl |
+ *  | WS_L | WS_R|     | L2  | LALT|                               |LALT | L2  |     | RAlt| RCtl |
  *  `------------------------------'                               `------------------------------'
  *                                 ,-------------.   ,-------------.
  *                                 | W_SL |WIN_UL|   |WIN_UR| W_MR |
@@ -154,21 +141,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT_ergodox(  // layer 0 : default
             // left hand
             //--+----* ----+----* ----+----* ----+----* ----+----* ----+----* ----+----*
-            KC_INS,    KC_1,      KC_2,      KC_3,      KC_4,      KC_5,      KC_DELETE,
-            KC_TAB,    KC_Q,      KC_W,      KC_E,      KC_R,      KC_T,      JA_LBRC,
+            KC_INS,    KC_1,      KC_2,      KC_3,      KC_4,      KC_5,      KC_INS,
+            KC_TAB,    KC_Q,      KC_W,      KC_E,      KC_R,      KC_T,      KC_LBRC,
             KC_LCTRL,  KC_A,      KC_S,      KC_D,      KC_F,      KC_G,
-            KC_LSFT,   KC_Z,      KC_X,      KC_C,      KC_V,      KC_B,      JA_HAT,
-            WS_L,      WS_R,      KC_INS,    MO(WCTL),  LALT_T(KC_MHEN),
+            KC_LSFT,   KC_Z,      KC_X,      KC_C,      KC_V,      KC_B,      KC_GRAVE,
+            WS_L,      WS_R,      KC_INS,    MO(WCTL),  KC_LALT,
                        W_SL,      WIN_UL,
                                   WIN_DL,
             KC_ENT,    KC_ESC,    KC_LWIN,
             // right hand
             //--+----* ----+----* ----+----* ----+----* ----+----* ----+----* ----+----*
-            KC_BS,     KC_6,      KC_7,      KC_8,      KC_9,      KC_0,      KC_MINS,
-            JA_RBRC,   KC_Y,      KC_U,      KC_I,      KC_O,      KC_P,      LALT_T(JA_AT),
+            KC_EQL,    KC_6,      KC_7,      KC_8,      KC_9,      KC_0,      KC_MINS,
+            KC_RBRC,   KC_Y,      KC_U,      KC_I,      KC_O,      KC_P,      LALT_T(KC_BSLS),
                        KC_H,      KC_J,      KC_K,      KC_L,      KC_SCLN,   LCTL_T(KC_QUOT),
-            KC_JYEN,   KC_N,      KC_M,      KC_COMM,   KC_DOT,    KC_SLSH,   KC_RSFT,
-                          RALT_T(KC_HENK),   MO(WCTL),  KC_LWIN,   KC_RALT,   KC_RCTL,
+            KC_EQL,    KC_N,      KC_M,      KC_COMM,   KC_DOT,    KC_SLSH,   KC_RSFT,
+                                  KC_RALT,   MO(WCTL),  KC_TRNS,   KC_RALT,   KC_RCTL,
             WIN_UR,    W_MR,
             WIN_DR,
             KC_RWIN,   MO(SYMB),  KC_SPACE
@@ -180,9 +167,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |---------+------+------+------+------+------+------|      |------+------+------+------+------+------+--------|
  * |         |      |      |  {   |   }  | PScr |      |      |      |      | App  | PgUp | PgDn |      |        |
  * |---------+------+------+------+------+------|      |      |      |------+------+------+------+------+--------|
- * |         |      |      |  [   |   ]  | ScLk |------|      |------| Left | Down |  Up  |Right |      |        |
+ * |         | WS_L | WS_R |  [   |   ]  | ScLk |------|      |------| Left | Down |  Up  |Right |      |        |
  * |---------+------+------+------+------+------|      |      |      |------+------+------+------+------+--------|
- * |         |      | COPY |PASTE |      |      |      |      |      | BS   | Del  | Home | End  |      |        |
+ * |         |      |      |      |      |      |      |      |      | BS   | Del  | Home | End  |      |        |
  * `---------+------+------+------+------+-------------'      `-------------+------+------+------+------+--------'
  *   |       |      |      |      |      |                                  |      |      |      |      |RESET |
  *   `-----------------------------------'                                  `----------------------------------'
@@ -200,9 +187,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
             //--+----* ----+----* ----+----* ----+----* ----+----* ----+----* ----+----*
             KC_TRNS,   KC_F1,     KC_F2,     KC_F3,     KC_F4,     KC_F5,     KC_TRNS,
             KC_TRNS,   KC_TRNS,   KC_TRNS,   SF_LBRC,   SF_RBRC,   KC_PSCR,   KC_TRNS,
-            KC_TRNS,   KC_TRNS,   KC_TRNS,   JA_LBRC,   JA_RBRC,   KC_SLCK,
+            KC_TRNS,   WS_L,      WS_R,      KC_LBRC,   KC_RBRC,   KC_SLCK,
             KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,
-            KC_TRNS,   KC_TRNS,   T_COPY,    T_PASTE,   KC_TRNS,
+            KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,
                                                                    KC_TRNS,   KC_TRNS,
                                                                               KC_TRNS,
                                                         KC_TRNS,   KC_TRNS,   KC_TRNS,
@@ -250,14 +237,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                                    WIN_DL,
                                                            KC_TRNS,    KC_TRNS,    KC_TRNS,
             // right hand
-            KC_TRNS,   WS_6,       WS_7,       WS_8,       WS_9,       WS_0,       KC_TRNS,
+            WS_6,      WS_7,       WS_8,       WS_9,       WS_0,       KC_TRNS,    KC_TRNS,
             WIN_U,     APP_Y,      APP_U,      APP_I,      APP_O,      APP_P,      KC_TRNS,
                        APP_H,      APP_J,      APP_K,      APP_L,      APP_SCLN,   KC_TRNS,
             WIN_R,     APP_N,      APP_M,      APP_COMM,   APP_DOT,    APP_SLSH,   KC_TRNS,
                                    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,
             WIN_UR,    WIN_R,
             WIN_DR,
-            KC_TRNS,   KC_TRNS,    WIN_C
+            KC_TRNS,   KC_TRNS,    KC_TRNS
         ),
 /* Keymap 3: Mouse Control Layer
  *
